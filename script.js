@@ -138,7 +138,7 @@
 // ---------- Typed roles ----------
 (() => {
   const el = document.getElementById('typed');
-  const words = ['Full Stack .NET Developer', 'Azure Cloud Engineer', 'Team Lead', 'CRM & E-commerce Developer', 'Technical Project Manager', 'Digital Marketer'];
+  const words = ['Full Stack .NET Developer', 'Azure Cloud Engineer', 'Team Lead', 'CRM & E-commerce Developer', 'Automation Engineer', 'Technical Project Manager', 'Digital Marketer'];
   let w = 0, c = 0, del = false;
   (function tick() {
     const word = words[w];
