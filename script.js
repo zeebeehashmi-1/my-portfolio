@@ -152,7 +152,18 @@
 
 // ---------- Nav, reveal, counters ----------
 const nav = document.getElementById('nav');
-addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 30), { passive: true });
+const bar = document.getElementById('progress'), toTop = document.getElementById('toTop');
+function onScroll() {
+  nav.classList.toggle('scrolled', scrollY > 30);
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const p = max > 0 ? Math.min(scrollY / max, 1) : 0;
+  bar.style.transform = 'scaleX(' + p + ')';
+  toTop.classList.toggle('show', max > 0 && max - scrollY < 120);   // only once the user reaches the bottom
+}
+addEventListener('scroll', onScroll, { passive: true });
+addEventListener('resize', onScroll);
+toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+onScroll();
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 const io = new IntersectionObserver(es => es.forEach(e => {
