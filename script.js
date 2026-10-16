@@ -158,7 +158,9 @@ function onScroll() {
   const max = document.documentElement.scrollHeight - innerHeight;
   const p = max > 0 ? Math.min(scrollY / max, 1) : 0;
   bar.style.transform = 'scaleX(' + p + ')';
-  toTop.classList.toggle('show', max > 0 && max - scrollY < 120);   // only once the user reaches the bottom
+  // button fades in as soon as scrolling starts, and brightens + glows as the reader nears the bottom
+  toTop.classList.toggle('show', scrollY > 120);
+  toTop.style.setProperty('--p', Math.min(Math.max((p - 0.05) / 0.9, 0), 1).toFixed(3));
 }
 addEventListener('scroll', onScroll, { passive: true });
 addEventListener('resize', onScroll);
